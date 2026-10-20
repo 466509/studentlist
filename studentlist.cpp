@@ -37,7 +37,6 @@ int main() {
       print(classroom);
     }
     else if (strcmp(choice, "DELETE") == 0) {
-      cout << "removing";
       removeStudent(classroom);
     }
     else if (strcmp(choice, "QUIT") == 0) {
@@ -79,9 +78,11 @@ void removeStudent(vector<Student>& classroom) {
   Student student;
   cout << "Enter the ID of the student you want to remove: ";
   cin >> student.id;
-  for (vector<Student>:: iterator it = classroom.begin(); it != classroom.end(); ++it) { // Iterate through all students
+  for (vector<Student>:: iterator it = classroom.begin(); it != classroom.end(); ) { // Iterate through all students
     if (it->id == student.id) { // If the ID is chosen, erase the student
       it = classroom.erase(it);
+    } else {
+      it++;
     }
   }
 }
